@@ -28,6 +28,14 @@ const Home: NextPage = () => {
     }
   }
 
+  const handleClick = (direction: string) => {
+    let newStep = currentStep;
+
+    direction === "next" ? newStep++ : newStep--;
+    //check if steps are within bounds
+    newStep > 0 && newStep < steps.length && setCurrentStep(newStep);
+  }
+
   return (
     <div className='md:w-1/2 mx-auto shadow-xl rounded-2xl pb-2 bg-white'>
       {/**stepper */}
@@ -37,8 +45,13 @@ const Home: NextPage = () => {
           currentStep={currentStep}
         />
       </div>
+
       {/**navigation control */}
-      <StepperControl />
+      <StepperControl 
+        handleClick={handleClick}
+        currentStep={currentStep}
+        steps={steps}
+      />
 
     </div>
   )
