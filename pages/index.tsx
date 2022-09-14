@@ -5,10 +5,13 @@ import StepperControl from '../components/StepperControl'
 import Account from '../components/steps/Account'
 import Details from '../components/steps/Details'
 import Final from '../components/steps/Final'
+import { StepperContext } from '../context/StepperContext'
 
 
 const Home: NextPage = () => {
-  const [currentStep, setCurrentStep] = useState(1)
+  const [currentStep, setCurrentStep] = useState(1);
+  const [userData, setUserData] = useState<string>("");
+  const [finalData, setFinalData] = useState<string>("");
 
   const steps = [
     "Account Information",
@@ -20,9 +23,9 @@ const Home: NextPage = () => {
     switch(step) {
       case 1: 
         return <Account />
-      case 1: 
+      case 2: 
         return <Details />
-      case 1: 
+      case 3: 
         return <Final />
       default:
     }
@@ -44,7 +47,17 @@ const Home: NextPage = () => {
           steps={steps}
           currentStep={currentStep}
         />
+
+        {/**display components */}
+        <div className='my-10 p-10'>
+          <StepperContext.Provider value={{ userData, setUserData, finalData, setFinalData}}>
+            {displayStep(currentStep)}
+          </StepperContext.Provider>
+        </div>
+
       </div>
+
+
 
       {/**navigation control */}
       <StepperControl 
