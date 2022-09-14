@@ -36,7 +36,7 @@ const Home: NextPage = () => {
 
     direction === "next" ? newStep++ : newStep--;
     //check if steps are within bounds
-    newStep > 0 && newStep < steps.length && setCurrentStep(newStep);
+    newStep > 0 && newStep <= steps.length && setCurrentStep(newStep);
   }
 
   return (
@@ -56,8 +56,6 @@ const Home: NextPage = () => {
         </div>
 
       </div>
-
-
 
       {/**navigation control */}
       <StepperControl 
