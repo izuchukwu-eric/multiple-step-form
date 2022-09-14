@@ -11,7 +11,7 @@ import { StepperContext } from '../context/StepperContext'
 const Home: NextPage = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [userData, setUserData] = useState<string>("");
-  const [finalData, setFinalData] = useState<string>("");
+  const [finalData, setFinalData] = useState<string[]>([]);
 
   const steps = [
     "Account Information",
